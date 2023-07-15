@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        .slider{
+            width: 1300px;
+            max-width: 100vw;
+            height: 700px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .slider .list{
+            position: absolute;
+            width: max-content;
+            height: 100%;
+            left: 0;
+            top: 0;
+            display: flex;
+            transition: 1s;
+        }
+        .slider .list img{
+            width: 1300px;
+            max-width: 100vw;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider .buttons{
+            position: absolute;
+            top: 45%;
+            left: 5%;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .slider .buttons button{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff5;
+            color: #fff;
+            border: none;
+            font-family: monospace;
+            font-weight: bold;
+        }
+        .slider .dots{
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            color: #fff;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .slider .dots li{
+            list-style: none;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            margin: 10px;
+            border-radius: 20px;
+            transition: 0.5s;
+        }
+        .slider .dots li.active{
+            width: 30px;
+        }
+        @media screen and (max-width: 768px){
+            .slider{
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+    <section>
+        <a href="#!products">       <!--------Cart Button----------->
+            <button type="button" class="cartBtn" data-toggle="modal"  data-target="#shoppingCart">
+                <span class="glyphicon glyphicon-shopping-cart" ></span> 
+                <span class="badge" ng-hide=" count == 0 "> {{count}} </span> 
+            </button>
+        </a>
+
+        <h1>GALLERY</h1>
+        <div class="slider">
+            <div class="list">
+                <div class="item_gallery">
+                    <img src="img/gallery01.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery02.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery03.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery04.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery05.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery06.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery07.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery08.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery09.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery10.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery11.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery12.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery13.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery14.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery15.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery16.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery17.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery18.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery19.png" alt="">
+                </div>
+                <div class="item_gallery">
+                    <img src="img/gallery20.png" alt="">
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="prev" ng-click="prevGal()">&lt;</button>
+                <button id="next" ng-click="nextGal()">&gt;</button>
+            </div>
+            <ul class="dots">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    </section>
+</body>
+</html>

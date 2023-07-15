@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        
+    </style>
+    
+
+</head>
+<body>
+    <header>
+            <div id="slideshow">
+                <div class="entire-content">
+                    <div class="content-carrousel">
+                        <figure class="shadow"><img  src="img/caro01.jpg"/></figure>
+                        <figure class="shadow"><img src="img/caro04.jpg" /></figure>
+                        <figure class="shadow"><img src="img/caro02.jpg" /></figure>
+                        <figure class="shadow"><img src="img/caro05.jpg" /></figure>
+                        <figure class="shadow"><img src="img/caro03.jpg" /></figure>
+                        <figure class="shadow"><img src="img/caro06.jpg" /></figure>
+                        <figure class="shadow"><img src="img/caro07.jpg" /></figure>
+                        <figure class="shadow"><img src="img/caro08.png"/></figure>
+                        <figure class="shadow"><img src="img/caro09.png" /></figure>
+                    </div>
+                </div>
+            </div>
+
+            <div id="list_product">
+                <div id="headh2">
+                    <a href="#"><h2>HIGHLIGHTS CATEGORY</h2></a>
+                </div>
+                <br><br>
+                <ul>
+                    <li class="categoryBtn"  ng-repeat="cat in categories">
+                        <a href="#!products">
+                            <button ng-click="getCat(cat.title); toFirstPage()" >
+                                <img class="categoryImg" src="{{cat.image}}">
+                                <p> {{cat.title}} </p>
+                            </button>
+                        </a>               
+                    </li>
+                </ul>
+
+            </div>
+        
+            <div class="khuyen_m">
+                <p><b  style="font-family:cursive; ">SIMPLON's</b> Best seller</p>
+            </div>
+            <div class="carousel-p1">
+                <div id="slide">
+                    <div class="item" ><a href="#!products" ng-click="getID('h07')"><img src="images/hair_25.png" width="100%" ></a></div>
+                    <div class="item" ><a href="#!products" ng-click="getID('s10')"><img src="images/skin_10.png" width="100%" ></a></div>
+                    <div class="item" ><a href="#!products" ng-click="getID('s12')"><img src="images/skin_12.png" width="100%" ></a></div> 
+                    <div class="item" ><a href="#!products" ng-click="getID('muk04')"><img src="images/muk_04.png" width="100%" ></a></div>
+                    <div class="item" ><a href="#!products" ng-click="getID('muk14')"><img src="images/muk_14.png" width="100%" ></a></div>
+                    <div class="item" ><a href="#!products" ng-click="getID('np18')"><img src="images/np18.jpg" width="100%" ></a></div>
+                    <div class="item" ><a href="#!products" ng-click="getID('s01')"><img src="images/skin_01.png" width="100%" ></a></div>
+                </div>
+                
+                    <button id="prev" ng-click="prevslide()"><i class="fa-solid fa-angles-left"></i></button>
+                    <button id="next" ng-click="nextslide()"><i class="fa-solid fa-angles-right"></i></button>
+                
+            </div>
+            <div id="contain_1">
+                <div id="canh-left">
+                    <h2><i style="font-family: Brush Script MT; ">Cosmetics destination</i></h2>
+                    <h2>Discounts on all cosmetic packages</h2>
+                    <p>
+                        We offer high quality, organic cosmetics and beauty products.
+                        All of our products are rich in nutrients and taste delicious.
+                        Surely, it will give you a luxurious feeling.
+                        We offer quality cosmetic products at affordable prices.
+                         <a class="watchnow" href="#!products" ng-click="getCat('ALL PRODUCTS')">watch now</a>
+                    </p>
+                    
+                </div>
+            </div>
+
+            <div id="contain_2" >
+                <div id="canh-right">
+                 <h2><i style="font-family: Brush Script MT; ">Illuminate the beauty</i></h2>
+                 <h2>Body care set</h2>
+                 <p>
+                    All are Herbal Cosmetics and it is formulated, using various permitted herbal cosmetic ingredients, which are 100% pure and safe Herbal products.
+                      <a class="watchnow" href="#!products" ng-click="getCat('SKIN')">watch now</a>
+                 </p>
+                 
+                </div>
+             </div>
+             <div id="contain_3">
+                    <div>
+                        <img src="images/contain_3.png" alt="">
+                    </div>
+                    <div style="background: white;padding: 5px 10px;">
+                        <h2 style="text-align: center;">The road to good-looking hair</h2>
+                        <p style="text-align:justify;">
+                            We bring you the best hair care products, make your hair always stay healthy and beautiful.
+                            Our products make you always shine with confidence, attract all eyes from people around.
+                             <a class="watchnow" href="#!products" ng-click="getCat('HAIR')">watch now</a>
+                            </p>
+                        
+                    </div>
+
+            </div>
+            <div id="contain_4">
+                <div style="background: white;padding: 5px 10px;">
+                    <p>
+                        <h2 style="text-align: center;">Exclusive jewelry</h2>
+                        <p style="text-align: justify;">
+                            today, the world of genuine men's and women's jewelry is very beautiful,
+                             variety with many different designs and materials (gold, silver, rhinestones),
+                             from bracelets, earrings, necklaces to even rings.
+                             <a class="watchnow" href="#!products" ng-click="getCat('JEWELRY')">watch now</a>
+                        </p>
+                       
+                    </p>
+                </div>
+                <div>
+                    <img src="images/contain_4.png" alt="">
+                </div>
+            </div>
+
+            <div id="contain_5">
+                <div>
+                    <img src="images/contain_5.png" alt="">
+                </div>
+
+                <div style="background: white; padding: 5px 20px;">
+                    <h2 style="text-align: center;">Become Makeup Artist</h2>
+                    <p style="text-align: justify;">
+                        Enhance your art with our multitude of blogs covering topics ranging from Makeup Artist Career Tips
+                        , Beauty Tutorials, Special Effects Tutorials, Pro Tips, and more!
+                         <a class="watchnow" href="#!products" ng-click="getCat('MAKE-UP KITS')">watch now</a>
+                    </p>
+                    
+                </div>
+
+            </div>
+
+            <div class="nd">
+                <div class="vct">
+                    <h2><b>About SIMPLON</b></h2><br>
+                    <p>                    
+                        Every woman has her own beauty and deserves to be admired,
+                         be honored and be confident in who you are.
+                         Women always deserve the very best for
+                         My life: Complete happiness, complete beauty and more
+                         .SIMPLON is more than a jewelry and cosmetic brand but also a representative
+                         for a lifestyle of the most deserving of perfect values for women.
+                    </p>
+                </div>
+
+                <div class="ht">
+                    <div>
+                        <p>
+                            
+                            <h1><i class="fa-sharp fa-regular fa-circle-question"></i></h1>
+                            SUPPORT
+                        </p>
+                        <p>Hotline suppot 1900.000.XXX</p>
+                    </div>
+                    <div>
+                        
+                        <p>
+                            <h1><i class="fa-solid fa-box "></i></h1>
+                            free ship
+                        </p>
+                        <p>Fast delivery time, from 3 - 5 working days</p>
+                    </div>
+                    <div>
+                        <p>
+                            <h1><i class="fa-sharp fa-regular fa-credit-card"></i></h1>
+                            Diversified payment
+                        </p>
+                        <p>Accept payment COD, Credit/Debit Card</p>
+                    </div>
+                    <div> 
+                        <p>
+                            <h1><i class="fa-sharp fa-solid fa-arrow-rotate-left"></i></h1>
+                            Easy return and exchange
+                        </p>
+                        <p>Delivery time up to 30 days</p>
+                    </div>
+                </div>
+            </div>
+        
+        <a href="#!products">       <!--------Cart Button----------->
+            <button type="button" class="cartBtn" data-toggle="modal"  data-target="#shoppingCart">
+                <span class="glyphicon glyphicon-shopping-cart" ></span> 
+                <span class="badge" ng-hide=" count == 0 "> {{count}} </span> 
+            </button>
+        </a>
+    </header> 
+    <footer>
+        
+    
+    </footer> 
+
+</body>
+</html>
+

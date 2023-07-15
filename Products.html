@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+
+
+<body class="container-fluid" ng-controller="myCtrl" >
+    <header></header>
+    <section>
+        <div>
+            <br> <br> <br> <br>
+        </div>
+        <!--===============================  CATEGORIES =========================== -->
+        <div style="width: 100%; overflow: auto;">
+            <!-- <h1 align="center">CATEGORIES</h1> -->
+            <ul>
+                <li class="categoryBtn"  ng-repeat="cat in categories"> 
+                    <button ng-click="getCat(cat.title); toFirstPage()" >
+                        <img class="categoryImg" src="{{cat.image}}">
+                        <p> {{cat.title}} </p>
+                    </button>                   
+                </li>
+            </ul>
+        </div>
+
+        <br>        
+        <!--=============================  LIST OF PRODUCTS =============================-->
+        <div style="display: block; overflow: auto; padding-left: 20px;" >   
+            <h1 align="center"> {{categoryTitle}} </h1>
+            <p style="font-size: 14pt; margin-left: 40px;">
+                <span> {{currentPage*pageSize + 1}} - </span>
+                <span ng-hide="currentPage >= (numberOfProducts/pageSize - 1)"> {{(currentPage+1)*pageSize}} </span>
+                <span ng-hide="numberOfProducts/pageSize - 1 > currentPage "> {{(productsList|filter:filterProducts).length}} </span>
+                of <span id="filterLength" >{{(productsList|filter:filterProducts).length}}</span> Products Found
+            </p>
+            
+            <div class="col-lg-4 col-sm-6" ng-repeat="item in productsList | filter:filterProducts |
+                                                    startFrom:currentPage*pageSize | limitTo:pageSize" >
+                <div class="card">
+                    <img src="images/{{item.picture}}" style="height:55% ; max-width: 300px ;">
+                    <p class="itemPrice">{{"$" + item.price}}</p>
+                    <p class="itemName">{{item.name}}</p>
+                    <div class="cardButton">
+                        <button id="addCartBtn" class="itemCardBtn" ng-click=" addItem(item)" ng-hide="item.category=='UPCOMING'">Add to Cart</button>
+                        <button ng-click=" addItem(item)" data-toggle="modal"  data-target="#shoppingCart" ng-hide="item.category=='UPCOMING'">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Pagination-->
+        <div class="pagination-list">
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1;setClickedPage(currentPage)">
+                Previous
+            </button>
+            <!--  {{currentPage+1}}/ -->{{numberOfPages()}}
+            
+            <em ng-repeat="p in pageArray" ng-show="pageSize>1">
+              <button ng-disabled="p == currentPage" ng-class="{'selectedPage' : p == currentPage}" href="" ng-click="$parent.currentPage=p; setClickedPage(currentPage)">{{p+1}}</button>
+            </em>
+    
+            <button ng-disabled="currentPage >= (numberOfProducts/pageSize - 1)" ng-click="currentPage=currentPage+1;setClickedPage(currentPage)">
+                Next
+            </button>
+        </div> 
+        <!--==================== SHOPPING CART ========================-->
+        <div>       <!--------Cart Button----------->
+            <button type="button" class="cartBtn" data-toggle="modal"  data-target="#shoppingCart">
+                <span class="glyphicon glyphicon-shopping-cart" ></span> 
+                <span class="badge" ng-hide=" count == 0 "> {{count}} </span> 
+            </button>
+        </div>
+
+        <!---------   Shopping Cart Modal   ---------->
+        <div class="modal fade" id="shoppingCart" role="dialog" >
+            <div class="modal-dialog" style="width: 70%;">             
+                <!--  Modal content  -->
+                <div class="modal-content" >
+                    <div class="modal-header" style="border-radius: 15px 15px 0px 0px;">
+                        <h4 class="modal-title">Shopping Cart </h4>
+                    </div>
+                    <div class="modal-body" style="overflow: auto; height: 400px;">
+                        <p ng-show="shoppingcart.length==0" align="center"><br><br> Your cart is currently empty.</p>
+                        <table width="80%" id="cartlist" class="table table-hover">
+                            <tr ng-hide="shoppingcart.length==0">
+                                <th width="60%" style="padding-left: 70px;">Product</th>
+                                <th width="15%">Quantity</th>
+                                <th width="10%">Price</th>
+                                <th width="15%">Cost</th>
+                            </tr>
+                            <tr ng-repeat="item in shoppingcart">
+                                <td>
+                                    <table width="100%">
+                                        <tr>
+                                            <td width="60px" align="center"><img src="images/{{item.picture}}" style="height: 50px; max-width: 50px;"></td>
+                                            <td><span >{{item.name}}</span> </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <button ng-click="decreaseQty(item)" class="glyphicon glyphicon-minus "></button>
+                                    {{item.qty}} 
+                                    <button ng-click="increaseQty(item)" class="glyphicon glyphicon-plus"></button>
+                                </td>
+                                <td> {{"$" + item.price}} </td>
+                                <td> {{"$" + getCost(item).toFixed(2)}} 
+                                    <span style="float: right;"><button ng-click="removeItem(item)" style="color: rgb(211, 7, 7); font-size: 15pt;"
+                                        class="glyphicon glyphicon-remove"></button></span>
+                                </td>
+                            </tr>
+                            <tr ng-hide="shoppingcart.length==0">
+                                <td></td> <td></td>
+                                <td><h4 style="color: brown;">Total: </h4></td>
+                                <td style="color: brown; font-size: 15pt;"><strong> {{"$" + getTotal()}} </strong></td>
+                            </tr>
+                            <tr ng-hide="shoppingcart.length==0">
+                                <td></td>  <td></td> <td></td>
+                                <td><button ng-click="clearCart()" style="color: #d30707; padding-left: 0px;">
+                                    <strong>CLEAR ALL</strong></button></td> 
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer" style="text-align: center;">
+                            <button data-dismiss="modal" data-toggle="modal"  data-target="#placeorder"  class="checkout"
+                                    ng-disabled="shoppingcart.length==0">Checkout </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: right;">Close</button>
+                    </div>
+                </div>               
+            </div>
+        </div>
+
+        <!---------   PLACE ORDER ---------->
+        <div class="modal fade" id="placeorder" role="dialog" >
+            <div class="modal-dialog" style="width: 70%;">             
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="backBtn" type="button" data-toggle="modal"  data-target="#shoppingCart" data-dismiss="modal">&larr;</button>
+                        <h4 style="margin-top: 5px;" class="modal-title">Your Order</h4>
+                    </div>
+                    <div class="modal-body" style="overflow: auto;height: 400px;">
+                        <div class="customerInfo">
+                            <form class="form-horizontal" id="orderForm" ng-submit="confirmOrder()">
+                                <div>
+                                    <h3 align="center">Customer Information</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3" for="CName">Full Name:</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control"
+                                         id="CName" placeholder="Enter Your Full Name" required>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3" for="CPhone">Phone:</label>
+                                    <div class="col-lg-6">
+                                        <input type="tel" class="form-control"
+                                        id="CPhone" placeholder="Phone number (9-12) digits" required pattern="[0-9]{9,12}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3" for="CAddress">Address:</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control"
+                                         id="CAddress" placeholder="Enter Your Address" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3" for="CNote">Note:</label>
+                                    <div class="col-lg-4">
+                                        <textarea class="form-control" id="CNote" rows="5" placeholder="e.g. Delivery time before 5pm,..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3" for="">Payment Method</label>
+                                    <div class="col-lg-6" >
+                                        <input name="payment" type="radio" value="cash" ng-model="txtPayment" ng-checked="true"> <span>Cash on Delivery</span> <br><br>
+                                        <input name="payment" type="radio" value="card" ng-model="txtPayment" > <span>Credit/Debit Card<img src="images/payment-mastercard.jpg" width="50px"><img src="images/payment-visa.jpg" width="50px"></span>
+                                    </div>
+                                    <div class="col-lg-offset-3 col-lg-6" ng-show="txtPayment=='card'" >
+                                        <h4>Payment Details</h4>
+                                        <div class="col-lg-10" style="padding-left: 0px;">
+                                            <label class="control-label">Card Number</label>
+                                            <input onkeydown="autoSpace()" id="creditnumber" class="form-control" type="text" placeholder="0000 0000 0000 0000"  maxlength="19" minlength="19">
+                                        </div>
+                                        <div class="col-lg-4" style="padding-left: 0px;">
+                                            <label class="control-label" >Expire Day</label>
+                                            <input class="form-control" type="text" placeholder="MM/YY" pattern="[0-9]{2}/[0-9]{2}$" >
+                                        </div>
+                                        <div class="col-lg-4" style="padding-left: 0px;">
+                                            <label class="control-label">Security Code </label>
+                                            <input class="form-control" type="text" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- ORDER -->
+                            <table width="80%" id="cartlist" class="table table-hover">
+                                <tr ng-hide="shoppingcart.length==0">
+                                    <th width="60%" style="padding-left: 70px;">Product</th>
+                                    <th width="15%">Quantity</th>
+                                    <th width="10%">Price</th>
+                                    <th width="15%">Cost</th>
+                                </tr>
+                                <tr ng-repeat="item in shoppingcart">
+                                    <td>
+                                        <table width="100%">
+                                            <tr>
+                                                <td width="60px" align="center"><img src="images/{{item.picture}}" style="height: 50px; max-width: 50px;"></td>
+                                                <td><span >{{item.name}}</span> </td>
+                                            </tr>
+                                        </table>
+                                        
+                                    </td>
+                                    <td> {{item.qty}} </td>
+                                    <td> {{"$" + item.price}} </td>
+                                    <td> {{"$" + getCost(item)}} </td>
+                                </tr>
+                                <tr ng-hide="shoppingcart.length==0">
+                                    <td></td> 
+                                    <td></td>
+                                    <td><h4 style="color: brown;">Total: </h4></td>
+                                    <td style="color: brown; font-size: 15pt;">{{"$" + getTotal()}} </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button   class="orderBtn" data-toggle="modal" data-target="#verifyOrder" >Place Order</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>               
+            </div>
+        </div>
+        <div id="verifyOrder" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <br>
+                    <p align="center">Are you sure you want to place this order?</p>
+                    <p align="center" >
+                    <button data-dismiss="modal" class="btn btn-secondary" style="font-size: 15pt;">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button   class="btn btn-primary" style="font-size: 15pt; background-color: #e05e5e;"  data-toggle="modal" data-target="#verifyOrder"
+                            id="submitOrderBtn" type="submit" form="orderForm">Place Order</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Alert Message-->
+        <div  id="addedAlert" > <!--Success Added Product to Cart-->
+            <p><i class="fa fa-check-circle" style="font-size: 20pt; color: green ;"></i> 
+                Product has been added to your Shopping Cart. </p>
+        </div>
+
+        <div id="successOrder" class="alert">  <!--Confirm Order Message-->
+            <p>
+                <span id="logo" style="font-size: 20pt; float: left;">SIMPLON</span>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </p><br><br>
+            <p><i class="fa fa-check-circle" style="font-size: 30pt; color: green ;"></i></p>
+            <p>Thank you for your Order </p>
+        </div>
+ 
+        
+      
+        
+    </section>
+    <footer></footer>
+</body>
+</html>

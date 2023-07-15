@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT US</title>
+    <style>
+    /* -------------ABOUT US PAGE------------------ */
+
+        .aboutus-title {
+            margin: auto;
+            text-align: center;
+            width: fit-content;
+            padding: 20px 20px;
+            border-radius: 33px;
+            color: #480d50;
+            font-size: 30pt;
+            font-weight: 750;
+
+        } 
+
+        .aboutus-content {
+            padding: 5px 100px;
+            font-size: 16pt;
+        }
+
+        .slogan {
+            margin: auto;
+            text-align: center;
+            color: white;
+            font-size: 45pt;
+            font-family: Brush Script MT, Brush Script Std, cursive;
+            background-color: #3b0242;
+            width: 1000px;
+            padding: 20px 20px;
+            border-radius: 56px;
+            box-shadow: 5px 5px 20px  #5c485f;
+        }
+
+        .aboutus-image {
+            margin: auto;
+            width: 65%;
+            border-radius: 10px;
+        }
+
+        .aboutus-card {
+            margin: 30px;
+            width: 300px;
+            height: 300px;
+            padding: 10px 10px;
+            border: 10px dashed #480d50; border-radius: 50px;
+            text-align: center;
+            font-size: 15pt;
+            text-decoration: none;
+            float: left;
+        }
+
+        .aboutus-card:hover {
+            border: 10px dashed #ac04be;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <header></header>
+
+    <section>
+        <a href="#!products">       <!--------Cart Button----------->
+            <button type="button" class="cartBtn" data-toggle="modal"  data-target="#shoppingCart">
+                <span class="glyphicon glyphicon-shopping-cart" ></span> 
+                <span class="badge" ng-hide=" count == 0 "> {{count}} </span> 
+            </button>
+        </a>
+        <div>   <!--BANNER-->
+            <img src="images/banner1.jpg" width="100%">
+        </div>
+
+        <div>
+            <p class="aboutus-title" >Who we are</p>
+            <p class="aboutus-content">
+                SIMPLON&apos;s Beauty care centre is very big shop of cosmetics and accessories.
+                We are known for our quality of the service which are providing since 1985.
+            </p>
+            <div class="aboutus-image">
+                <img src="images/grandopenning.jpg" >
+            </div>
+            
+            <p class="aboutus-content">
+                Our brands are trusted in millions of customers, and have been passed down from generation to generation.
+                As SIMPLON grows, we stay grounded in our purpose, values, and principles
+                and a deep-rooted understanding between each other and our company 
+                that being our best and doing our best - for the people who buy our products, for one another, 
+                and for the world around us - will lead to mutual success. 
+            </p>    <br><br>
+
+            <div class="slogan">  <!--Slogan-->
+                <p>Let’s be Beautiful. Be Colorful. and Be You</p>
+            </div>   <br><br> <br><br>
+        </div>
+        <div>
+            <p class="aboutus-title">What we do</p>
+            <p class="aboutus-content">
+                Since 1985, SIMPLON&apos; Beauty care have continued to grow our business by sourcing premium branded beauty care products 
+                with the help of our international suppliers. 
+                Our ethos has always been to provide the best online purchasing experience for our customers.
+                We supply leading brands at discounted prices with the Best services. 
+                We ensure that everybody should have access to an extensive range of high quality cosmetics at an affordable price.
+            </p>    <br>
+            <div class="aboutus-title" style="width: 750px; box-shadow: 5px 5px 20px  #5c485f; font-size: 45pt;
+                                            font-family: Brush Script MT, Brush Script Std, cursive;">
+                <p>Everything we do, we do it for you</p>
+            </div>
+            <br><br><br> <br>
+        </div>
+
+        <div>
+            <p class="aboutus-title"> Where we are</p>
+            <div style="margin: auto; width: fit-content;">
+                <a href="#!products" class="aboutus-card">
+                    <img src="images/iconshopping-onl.png" class="aboutus-image">
+                    <p>You can shopping online on this website</p>
+                </a>
+                <a href="#!contactus" class="aboutus-card">
+                    <img src="images/iconshopping.png" class="aboutus-image">
+                    <p>Or you can go and enjoy your shopping experience at our 5 shop</p>
+                </a>
+                
+            </div>
+        </div>
+        <p class="aboutus-title">Thanks for visiting our Website</p>
+    </section>
+    
+    
+</body>
+</html>

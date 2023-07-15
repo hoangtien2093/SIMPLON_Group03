@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <style>
+    /* CSS for Map */
+    body {
+      margin: 0;
+      box-sizing: border-box;
+      /* font-family: Arial, Helvetica, sans-serif; */
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+    .top-header{
+      /* margin: 0 30px; */
+      padding-left: 50px;
+      width: 100%;
+      height: 100px;
+    }
+    
+    /* CSS for Contact Info and Feedback Form */
+    .contact-info {
+      position: relative;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      margin-bottom: 20px;
+      margin-top: 40px;
+      margin-left: 30px;
+      margin-right: 30px;
+     
+    }
+    .column .content1{
+    
+      padding: 0 15px 30px;
+    }
+    .contact-info .column {
+      flex-basis: 50%;
+    }
+    
+    .contact-info .column h2 {
+      margin-top: 0;
+    }
+    
+   
+    .feedback-form {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .feedback-form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .feedback-form input:hover {
+      background-color: aliceblue;
+    }
+    .feedback-form textarea:hover {
+      background-color: aliceblue;
+    }
+    .feedback-form button {
+      font-size: 15pt;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    .feedback-form button:hover {
+      opacity: 0.7;
+    }
+    .shop-info{
+      line-height: 1cm;
+    }
+   .information i {
+    font-size: 18px;
+    padding-right: 10px;
+   }
+   /* Alert Success Send Feedback */
+   #successFeedback {
+  width: 40%;
+  padding: 20px 10px;
+  border-radius: 10px;
+  font-size: 15pt;
+  background-color: #fff9f9f6;
+  position: fixed; 
+  top: 100px; 
+  left: 50%;
+  transform: translate(-50%,0);
+  text-align: center;
+}
+    
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+
+      <header class="top-header">
+        <h1>Contact Us</h1>
+      </header>
+      
+      <a href="#!products">       <!--------Cart Button----------->
+        <button type="button" class="cartBtn" data-toggle="modal"  data-target="#shoppingCart">
+            <span class="glyphicon glyphicon-shopping-cart" ></span> 
+            <span class="badge" ng-hide=" count == 0 "> {{count}} </span> 
+        </button>
+    </a>
+       <!-- Map Location -->
+      <!-- <div id="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d979.6381972006641!2d106.71128223570655!3d10.84549563108408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752922acddf481%3A0x82affb1e1719fdcf!2sFPT%20Aptech%20Computer%20Education!5e0!3m2!1svi!2s!4v1687144412782!5m2!1svi!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div> -->
+    
+      <!-- Contact Info and Feedback Form -->
+      <div class="contact-info">
+        <div class="column">
+          <div class="content1">
+            <div class="map1"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15674.211135875452!2d106.712001!3d10.845496000000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752922acddf481%3A0x82affb1e1719fdcf!2sFPT%20Aptech%20Computer%20Education!5e0!3m2!1svi!2sus!4v1687753555257!5m2!1svi!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            
+            <div class="shop-info">
+              <h2>SIMPLON's Beauty care HCM1 Branch</h2>
+              <div class="information">
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i>62 Street 36, Hiep Binh Chanh Ward, Thu Duc City, Vietnam </p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i>TienPDHT5S2302039@fpt.edu.vn</p>
+                <p><i class="fa fa-mobile" aria-hidden="true"></i>+84 903051545</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">  <!--FEEDBACK-->
+          <h2 align="center">Send Feedback</h2>
+          <form class="feedback-form"  onsubmit="showFeedbackAlert()" >
+            <label for="name">Fullname</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter Your Fullname" required>
+    
+            <label for="email">Email</label>
+            <input type="email" id="Email" name="Email" placeholder="abc@gmail.com" required>
+    
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+    
+            <button type="submit">Send</button>
+          </form>
+          <div id="successFeedback" class="alert">  <!--Success Send Feedback Alert-->
+            <p>
+                <span id="logo" style="font-size: 20pt; float: left;">SIMPLON</span>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </p><br><br>
+            <p><i class="fa fa-check-circle" style="font-size: 30pt; color: green ;"></i></p>
+            <p>We have received your Feedback, thank you! </p>
+        </div>
+        </div>
+        <div class="column">
+          <div class="content1">
+            <div class="map1"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15677.277389319966!2d106.666274!3d10.786835!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ed2392c44df%3A0xd2ecb62e0d050fe9!2zRlBUIEFwdGVjaCBIQ00gMSAtIEjhu4cgVGjhu5FuZyDEkMOgbyBU4bqhbyBM4bqtcCBUcsOsbmggVmnDqm4gUXXhu5FjIFThur8gKFNpbmNlIDE5OTkp!5e0!3m2!1svi!2sus!4v1687753129896!5m2!1svi!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            
+            <div class="shop-info">
+              <h2>SIMPLON's Beauty care HCM2 Branch</h2>
+              <div class="information">
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i> 590 Cach Mang Thang 8 Street , Ward 11, District 3, Ho Chi Minh City, Vietnam</p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> VietVQT5S2303005@fpt.edu.vn</p>
+                <p><i class="fa fa-mobile" aria-hidden="true"></i> +84 349026707</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content1">
+            <div class="map1"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29792.77289145938!2d105.782297!3d21.02882!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab86cece9ac1%3A0xa9bc04e04602dd85!2zRlBUIEFwdGVjaCBIw6AgTuG7mWkgLSBI4buHIFRo4buRbmcgxJDDoG8gVOG6oW8gTOG6rXAgVHLDrG5oIFZpw6puIFF14buRYyBU4bq_IChTaW5jZSAxOTk5KQ!5e0!3m2!1svi!2sus!4v1687753402973!5m2!1svi!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            
+            <div class="shop-info">
+              <h2>SIMPLON's Beauty care Ha Noi Branch</h2>
+              <div class="information">
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i> 8A Ton That Thuyet Street, My Dinh Ward, Nam Tu Lien District, Ha Noi City, Vietnam</p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> TamPMTS2302028@fpt.edu.vn</p>
+                <p><i class="fa fa-mobile" aria-hidden="true"></i> +84 989020247</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content1">
+            <div class="map1"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31354.21337581144!2d106.68372!3d10.790109!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529b20f1b9ee1%3A0x95e0d0da743a6f39!2zRlBUIEFQVEVDSCBIQ00gMiAtIEjhu4cgVGjhu5FuZyDEkMOgbyBU4bqhbyBM4bqtcCBUcsOsbmggVmnDqm4gUXXhu5FjIFThur8gKFNpbmNlIDE5OTkp!5e0!3m2!1svi!2sus!4v1687752932077!5m2!1svi!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            <div class="shop-info">
+              <h2>SIMPLON's Beauty care HCM3 Branch</h2>
+              <div class="information">
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i> 391A Nam Ky Khoi Nghia Street, Ward 8, District 3, Ho Chi Minh City, Vietnam</p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> HuyTNQTS2302027@fpt.edu.vn</p>
+                <p><i class="fa fa-mobile" aria-hidden="true"></i> +84 386091908</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content1">
+            <div class="map1"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244.93469315031328!2d106.69426016600053!3d10.81474884009264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528e962682287%3A0xb40b8ddfe7593e6!2zMjc1IE5ndXnhu4VuIFbEg24gxJDhuq11LCBQaMaw4budbmcgMTEsIELDrG5oIFRo4bqhbmgsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2sus!4v1687754937979!5m2!1svi!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            <div class="shop-info">
+              <h2>SIMPLON's Beauty care HCM4 Branch</h2>
+              <div class="information">
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i> 275 Nguyen Van Dau Street, Ward 11, Binh Thanh District, Ho Chi Minh City, Vietnam</p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> TienPDHT5S2302039@fpt.edu.vn</p>
+                <p><i class="fa fa-mobile" aria-hidden="true"></i> +84 903051545</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+
+  
+</body>
+
+</html>
+<script src="regex_contactUs.js"></script>

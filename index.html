@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--    FRAMEWORKS   -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+    <!-- font anyone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--    SOURCE   -->
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="products-style.css">
+    <script src="index-controller.js"></script>
+    <title>SIMPLON</title>   
+</head>
+
+<body class="container-fluid" ng-app="myApp" ng-controller="myCtrl">
+    <header class="navbar">
+
+        <div class="LS">
+            <!-- ----------------------------------logo ------------------------ -->
+            <div>
+                <a href="#" id="logo">SIMPLON</a>
+            </div>
+  
+            <!-- ----------------------------------search show------------------------ -->
+            <div id="mySidepanel" class="sidepanel">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-sharp fa-solid fa-xmark"></i></a>
+                    <div class="box"><h3 style="text-align: center;">SEARCH</h3>
+                        <div class="container-4">
+                            <form action="#!products" ng-submit="getKeyword()" onsubmit="closeNav()">
+                                <input type="text" id="txtSearch" ng-model="txtSearch" 
+                                        placeholder="Search...">
+                                <button type="submit" class="icon"><i class="fa fa-search"></i></button>
+                            </form>
+                            
+                        </div>
+                    </div>
+             </div>
+
+        </div>
+
+    <!-- --------------------------------------------------------------------------- -->  
+    <!-- thanh menu-->
+    <ul id="menu">
+        <li id="hm"><a href="#/!"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#!gallery">Gallery</a></li>
+        <li><a href="#!products" ng-click="getCat('ALL PRODUCTS');setClickedPage(0)">Products <i class="fa fa-caret-down"></i></a>
+            <table class="sub-menu" id="bang">
+                <tr>
+                    <td><a href="#!products" ng-click="getCat('HAIR')">Hair</a></td>
+                    <td><a href="#!products" ng-click="getCat('MAKE-UP KITS')">Make-up Kits</a></td>
+                </tr>
+                <tr>        
+                    <td><a href="#!products" ng-click="getCat('SKIN')"> Skin</a></td>                                         
+                    <td><a href="#!products" ng-click="getCat('WEDDING KITS')">Wedding Kits</a></td>          
+                </tr>
+                <tr>            
+                    <td><a href="#!products" ng-click="getCat('NAIL ARTS')">Nail Arts</a></td>                  
+                    <td><a href="#!products" ng-click="getCat('JEWELRY')">Jewelry</a></td>                                                       
+                </tr>      
+                <tr>                            
+                    <td><a href="#!products" ng-click="getCat('NAIL PAINTS')">Nail Paints</a></td> 
+                    <td><a href="#!products" ng-click="getCat('UPCOMING')">Upcoming Products</a></td>
+                </tr>
+            </table> 
+        </li>               
+        <li><a href="#!aboutus">About Us</a></li>
+        <li><a href="#!contactus">Contact Us</a></li>
+        <li style="float: right; text-align: left;">
+            <!-- ----------------------------------search bt------------------------ -->
+            <button class="openbtn" onclick="openNav()">
+                <i class="fa fa-search" style="font-size: 25px;"></i>
+            </button>   
+        </li>
+    </ul> 
+    
+    </header>
+
+    <section> 
+        <div ng-view autoscroll="true"></div> 
+    </section>
+    <!-- Scroll To Top Button -->
+    <div>
+        <button class="scrollToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <span class="glyphicon glyphicon-arrow-up" style="font-size: 20pt;"></span>
+        </button>
+    </div>
+<!-- =========================== PAGE FOOTER ================================ -->
+    <footer class="pagefooter" width="100%" >
+        <hr>
+        <div class="icon-footer">
+            <ul class="list-social-media">
+              <li>
+                <a href="#" class="facebook">
+                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="twitter">
+                  <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                  <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="instagram">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="youtube">
+                  <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                  <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        <table width="93%" class="infofooter" >
+            <tr>
+                <td class="footercol1">
+                    <p>
+                        <span style="font-size: 30px;"> About us</span> &nbsp; &nbsp; &nbsp;
+                        <a href="#!aboutus" class="logofooter">SIMPLON</a>
+                    </p>
+                    <p > 
+                        <strong>Adress:</strong> 62 Street 36, Hiep Binh Chanh Ward, Thu Duc City, Vietnam <br>
+                        <strong>Phone:</strong> +84 903051545<br>
+                        <strong>Email:</strong> TienPDHT5S2302039@fpt.edu.vn
+                    </p>
+                </td>
+                <td class="footercol2">
+                    <p>
+                        <p><b>POLICY ONLY</b></p>
+                        Product warranty <br>
+                        Sales policy <br>
+                        Delivery policy <br>  
+                        Return Policy
+                    </p>
+                </td>
+                <td class="footercol3">
+                    <p><b>CUSTOMER SUPPORT</b></p>
+                    <a >Terms of Service</a> <br>
+                    <a href="#!contactus">Shop system</a> <br>
+                    <a href="#!contactus">You have question? Send feedback to us!</a><br>
+                    <a href="#!contactus">Contact Us</a>
+                </td>
+            </tr>
+        </table>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+    
+
