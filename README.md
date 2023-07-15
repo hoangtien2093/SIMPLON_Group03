@@ -16,6 +16,6 @@ Documentations : https://github.com/hoangtien2093/SIMPLON_Group03/tree/main/Docu
 
 =======================================
 
-Published website : https://github.com/hoangtien2093/SIMPLON_Group03
+Published website : https://hoangtien2093.github.io/SIMPLON_Group03/
 
 =======================================
