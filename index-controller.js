@@ -30,7 +30,7 @@ app.config(function($routeProvider){
   
 
 // ----------------------------
-//2. PHÁT TRIỂN CONTROLLER
+//2.  CONTROLLER
 app.controller('myCtrl', function($scope, $http){
   
     //-----------------   LOAD DATA   -----------------------
@@ -204,14 +204,14 @@ app.controller('myCtrl', function($scope, $http){
     //************************************************************************** *******
     
     //-----------------------------  PAGINATION ---------------------------------
-    // Số sản phẩm hiển thị trên mỗi trang
+    // Number of products displayed on each page
     $scope.pageSize = 12;
-    // Trang hiện tại
+    // Current page
     $scope.currentPage = 0;
-    // danh sách sản phẩm bằng rỗng
+    // empty product list
     $scope.productsList = [];
 
-    // Tính toán số trang
+    // Calculate the number of pages
     $scope.numberOfPages=function(){
         $scope.numberOfProducts = parseInt(document.getElementById('filterLength').textContent);
         var len = Math.ceil($scope.numberOfProducts/$scope.pageSize);
